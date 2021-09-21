@@ -1,0 +1,40 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    justify-items: center;
+}
+
+header {
+    width: 100vw;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 60vh;
+}
+
+.float-right {
+    float: right;
+    padding-right: 10px;
+}
+
+.float-left {
+    float: left;
+    padding-left: 10px;
+}
+
+.timer {
+    font-size: 30px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ans-width {
+    width: 100px;
+}
