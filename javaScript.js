@@ -1,19 +1,29 @@
 var startButton = document.querySelector('.start-button');
 var timerEl = document.querySelector('.timer');
-var question = document.querySelector('.question');
+var question = document.querySelector('#question');
+
 var firstAns = document.querySelector('.answer1');
 var secondAns = document.querySelector('.answer2');
 var thirdAns = document.querySelector('.answer3');
 var fourthAns = document.querySelector('.answer4');
 
+var instructions = document.querySelector('#instructions');
+var hideBtn = document.querySelector('#hide');
+var ansNote = document.querySelector('ans-note');
 
 var timer;
 var secondsLeft = 59;
+
+firstAns.style.display = "none";
+secondAns.style.display = "none";
+thirdAns.style.display = "none";
+fourthAns.style.display = "none";
 
 function startGame() {
     isWin = false;
     startButton.disabled = true;
     timerCount = 59;
+    document.querySelector('#hide').style.display = 'none';
     question1();
 }
 
@@ -32,12 +42,17 @@ function startTimer() {
         }
         
         if(secondsLeft === 0) {
+            clearInterval(timerClock);
             lostGame();
         }
     },1000);
 }
 
 function question1() {
+    firstAns.style.display = "block";
+    secondAns.style.display = "block";
+    thirdAns.style.display = "block";
+    fourthAns.style.display = "block";
     question.textContent = 'Commonly used data types do NOT include: ';
     firstAns.textContent = 'strings';
     secondAns.textContent = 'booleans';
@@ -45,21 +60,38 @@ function question1() {
     fourthAns.textContent = 'numbers';
     thirdAns.addEventListener('click', function() {
         console.log('Correct');
+        question2();
     })
-    question2();
 }
 
 function question2() {
+    firstAns.style.display = "block";
+    secondAns.style.display = "block";
+    thirdAns.style.display = "block";
+    fourthAns.style.display = "block";
     question.textContent = 'The condition in an if/else statement is enclosed within _________ ?';
-    firstAns.textContent = 'parentheses';
+    firstAns.textContent = 'quotes';
     secondAns.textContent = 'curly brackets';
-    thirdAns.textContent = 'quotes';
+    thirdAns.textContent = 'parentheses';
     fourthAns.textContent = 'square brackets';
     // create condition to check answer 
-    question3();
+    if(firstAns.clicked) {
+        ansNote.textContent = 'Correct!'
+        question3();
+    } else {
+        //console.log("wrong")
+        secondsLeft -= 8;
+        
+    }
+    
 }
 
 function question3() {
+    ansNote.textContent = "";
+    firstAns.style.display = "block";
+    secondAns.style.display = "block";
+    thirdAns.style.display = "block";
+    fourthAns.style.display = "block";
     question.textContent = 'Array in JavaScript can be used to store';
     firstAns.textContent = 'numbers';
     secondAns.textContent = 'strings';
@@ -70,6 +102,10 @@ function question3() {
 }
 
 function question4() {
+    firstAns.style.display = "block";
+    secondAns.style.display = "block";
+    thirdAns.style.display = "block";
+    fourthAns.style.display = "block";
     question.textContent = 'String values must be enclosed within ________ when being assigned to variables.';
     firstAns.textContent = 'commas';
     secondAns.textContent = 'curly brackets';
@@ -79,6 +115,10 @@ function question4() {
 }
 
 function question5() {
+    firstAns.style.display = "block";
+    secondAns.style.display = "block";
+    thirdAns.style.display = "block";
+    fourthAns.style.display = "block";
     question.textContent = 'A very useful tool used during development and debugging for printing content to the debugger is:';
     firstAns.textContent = 'JavaScript';
     secondAns.textContent = 'console.log';
@@ -88,13 +128,9 @@ function question5() {
 }
 
 function winGame() {
-
+    
 }
 
 function lostGame() {
-
-}
-
-function setQuestion() {
-
+    window.alert("GAME OVER!");
 }
