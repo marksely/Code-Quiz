@@ -11,6 +11,7 @@ var instructions = document.querySelector('#instructions');
 var hideBtn = document.querySelector('#hide');
 var ansNote = document.querySelector('ans-note');
 
+var chosenAns = thirdAns;
 var timer;
 var secondsLeft = 59;
 
@@ -32,19 +33,19 @@ startButton.addEventListener('click', startGame);
 
 function startTimer() {
     var timerClock = setInterval(function() {
-        secondsLeft--;
         timerEl.textContent = 'Time left: ' + secondsLeft;
+        if(secondsLeft >= 0) {
+            secondsLeft--;
+        } 
         if(secondsLeft === 0) {
-            if(isWin && secondsLeft >= 0) {
-                clearInterval(timerClock);
-                winGame();
-            }
+            lostGame();
+            clearInterval(timerClock);
+        }
+        if(isWin && secondsLeft) {
+            clearInterval(timerClock);
+            winGame();
         }
         
-        if(secondsLeft === 0) {
-            clearInterval(timerClock);
-            lostGame();
-        }
     },1000);
 }
 
@@ -58,6 +59,10 @@ function question1() {
     secondAns.textContent = 'booleans';
     thirdAns.textContent = 'alerts';
     fourthAns.textContent = 'numbers';
+    if(firstAns.clicked === true || secondAns.clicked === true || thirdAns.clicked === true) {
+        timerCount -= 5;
+    }
+
     thirdAns.addEventListener('click', function() {
         console.log('Correct');
         question2();
@@ -74,20 +79,18 @@ function question2() {
     secondAns.textContent = 'curly brackets';
     thirdAns.textContent = 'parentheses';
     fourthAns.textContent = 'square brackets';
-    // create condition to check answer 
-    if(firstAns.clicked) {
-        ansNote.textContent = 'Correct!'
-        question3();
-    } else {
-        //console.log("wrong")
-        secondsLeft -= 8;
-        
+    if(firstAns.clicked || secondAns.clicked || thirdAns.clicked) {
+        secondsLeft -= 5;
     }
+
+    thirdAns.addEventListener('click', function() {
+        console.log('Correct');
+        question3();
+    })
     
 }
 
 function question3() {
-    ansNote.textContent = "";
     firstAns.style.display = "block";
     secondAns.style.display = "block";
     thirdAns.style.display = "block";
@@ -95,10 +98,18 @@ function question3() {
     question.textContent = 'Array in JavaScript can be used to store';
     firstAns.textContent = 'numbers';
     secondAns.textContent = 'strings';
-    thirdAns.textContent = 'booleans';
-    fourthAns.textContent = 'all of the above';
+    thirdAns.textContent = 'all of the answers are true';
+    fourthAns.textContent = 'booleans';
+    if(firstAns.clicked || secondAns.clicked || thirdAns.clicked) {
+        secondsLeft -= 5;
+    }
+
+    thirdAns.addEventListener('click', function() {
+        console.log('Correct');
+        question4();
+    })
     // create condition to check answer 
-    question4();
+    //question4();
 }
 
 function question4() {
@@ -111,9 +122,16 @@ function question4() {
     secondAns.textContent = 'curly brackets';
     thirdAns.textContent = 'quotes';
     fourthAns.textContent = 'parentheses';
+    if(firstAns.clicked || secondAns.clicked || fourthAns.clicked) {
+        secondsLeft -= 5;
+    }
+
+    thirdAns.addEventListener('click', function() {
+        console.log('Correct');
+        question5();
+    })
     // create condition to check answer 
 }
-
 function question5() {
     firstAns.style.display = "block";
     secondAns.style.display = "block";
@@ -121,16 +139,25 @@ function question5() {
     fourthAns.style.display = "block";
     question.textContent = 'A very useful tool used during development and debugging for printing content to the debugger is:';
     firstAns.textContent = 'JavaScript';
-    secondAns.textContent = 'console.log';
-    thirdAns.textContent = 'terminal/bash';
+    secondAns.textContent = 'terminal/bash';
+    thirdAns.textContent = 'console.log';
     fourthAns.textContent = 'for loops';
     // create condition to check answer 
+    thirdAns.addEventListener('click', function(){
+        winGame();
+        checkWin();
+    })
 }
 
+function checkWin() {
+    if(chosenAns === thirdAns) {
+        isWin = true;
+    }
+}
 function winGame() {
     
 }
 
 function lostGame() {
-    window.alert("GAME OVER!");
+   
 }

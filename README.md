@@ -2,7 +2,7 @@
 
 04 Web APIs: Code-Quiz
 
-In this project we were supposed to create a coding quiz using HTML, CSS, and JavaScript.
+This project is a code quiz that tests developers knowledge about coding. 
 
 ## Acceptance criteria
 
