@@ -2,7 +2,7 @@
 
 04 Web APIs: Code-Quiz
 
-This project is a code quiz that tests developers knowledge about coding. 
+This project is a code quiz that tests developers knowledge about coding. When the start button is pressed there should be a timer and as they answer questions if they answer wrong time should be taken away from the clock. Once time has run out or the user has finsihed the game they should be able to save their highscore to compete with their classmates.
 
 ## Acceptance criteria
 

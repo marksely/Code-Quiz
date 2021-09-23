@@ -14,6 +14,7 @@ var ansNote = document.querySelector('ans-note');
 var chosenAns = thirdAns;
 var timer;
 var secondsLeft = 59;
+var highscore = [];
 
 firstAns.style.display = "none";
 secondAns.style.display = "none";
@@ -155,7 +156,9 @@ function checkWin() {
     }
 }
 function winGame() {
-    
+    var score = secondsLeft;
+    var name = window.prompt('You have completed the quiz! Enter your initials to be added to the highscores list!')
+    console.log(name + ':' + score);s
 }
 
 function lostGame() {
