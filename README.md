@@ -14,4 +14,4 @@ In order for the project to be considered finished, certain criteria had to be m
 * when the game is over or the timer hits 0, then the game is over and initials can be stored and saved with score
 
 ## Link to final application
-https://marksely.github.io/Password-Generator/
+https://marksely.github.io/Code-Quiz/
